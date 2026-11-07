@@ -28,6 +28,7 @@ Versi mengikuti [Semantic Versioning](https://semver.org/lang/id/).
 - Uji ketahanan parser DEX (`crates/dex-engine/tests/hardening.rs`): penolakan code_item/class_def/proto_ids dengan offset luar berkas, dan mutasi byte pada header tanpa panic.
 - `arunika-dex-engine`: opcode `invoke-virtual/range` (0x73) ditangani secara tepat; helper `invoke_virtual_range` di test-fixtures menggunakan opcode 0x73 (sebelumnya salah menggunakan 0x74 / `invoke-super/range`).
 - Tes regresi: 16 tes baru (12 stabilitas interpreter + 4 hardening parser), total 414 tes lolos lewat `cargo nextest run`.
+- Tes integrasi domain crate (fase 2): `arunika-sandbox-manager` (kebijakan, ConfinedRoot, PermissionPolicy, MemoryAssetSource, asset_children), `arunika-resource-manager` (tabel resource, ID sintetis, duplikat, nama tidak valid), `arunika-activity-runtime` (lifecycle, Intent, TaskStack). Total 439 tes lolos lewat `cargo nextest run`.
 - Resource APK: `Resources.getIdentifier`/`openRawResource`/
   `getResourceTypeName`/`getResourceEntryName` membaca entri `res/` langsung
   dari arsip lewat `AssetSource` dengan prefiks, sehingga resource mentah
