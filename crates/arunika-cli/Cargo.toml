@@ -1,0 +1,18 @@
+[package]
+name = "arunika"
+version = "1.0.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+arunika-apk-loader = { path = "../apk-loader" }
+arunika-compat-db = { path = "../compat-db" }
+arunika-dex-engine = { path = "../dex-engine" }
+arunika-framework-api = { path = "../framework-api" }
+arunika-host-linux = { path = "../host-linux" }
+arunika-crash-reporter = { path = "../crash-reporter" }
+libc = "0.2"
+serde_json = "1"
+
+[dev-dependencies]
+arunika-test-fixtures = { path = "../test-fixtures" }

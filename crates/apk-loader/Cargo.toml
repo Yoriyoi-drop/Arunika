@@ -1,0 +1,13 @@
+[package]
+name = "arunika-apk-loader"
+version = "1.0.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+apk-info = "1.0.13"
+serde = { version = "1", features = ["derive"] }
+thiserror = "1"
+
+[dev-dependencies]
+arunika-test-fixtures = { path = "../test-fixtures" }

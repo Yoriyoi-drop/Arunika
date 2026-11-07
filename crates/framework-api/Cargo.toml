@@ -1,0 +1,28 @@
+[package]
+name = "arunika-framework-api"
+version = "1.0.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+arunika-dex-engine = { path = "../dex-engine" }
+arunika-sandbox-manager = { path = "../sandbox-manager" }
+arunika-view-engine = { path = "../view-engine" }
+arunika-graphics-engine = { path = "../graphics-engine" }
+arunika-audio-manager = { path = "../audio-manager" }
+arunika-service-broker = { path = "../service-broker" }
+arunika-threading = { path = "../threading" }
+arunika-native-bridge = { path = "../native-bridge" }
+arunika-crash-reporter = { path = "../crash-reporter" }
+md5 = "0.7"
+num-bigint = "0.4"
+num-traits = "0.2"
+regex = "1"
+sha1 = "0.10"
+sha2 = "0.10"
+serde = { version = "1", features = ["derive"] }
+thiserror = "1"
+
+[dev-dependencies]
+arunika-test-fixtures = { path = "../test-fixtures" }
+serde_json = "1"

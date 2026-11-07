@@ -1,0 +1,22 @@
+[workspace]
+members = [
+    "crates/apk-loader",
+    "crates/arunika-cli",
+    "crates/audio-manager",
+    "crates/compat-db",
+    "crates/crash-reporter",
+    "crates/dex-engine",
+    "crates/manifest-parser",
+    "crates/framework-api",
+    "crates/graphics-engine",
+    "crates/activity-runtime",
+    "crates/host-linux",
+    "crates/native-bridge",
+    "crates/resource-manager",
+    "crates/sandbox-manager",
+    "crates/service-broker",
+    "crates/test-fixtures",
+    "crates/threading",
+    "crates/view-engine",
+]
+resolver = "3"

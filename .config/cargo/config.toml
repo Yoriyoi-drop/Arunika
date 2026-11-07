@@ -1,0 +1,2 @@
+[alias]
+# cargo nextest is the default test runner for this project
