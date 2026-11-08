@@ -42,6 +42,11 @@ Versi mengikuti [Semantic Versioning](https://semver.org/lang/id/).
   batas langkah (mcgg.apk turun dari ~2 juta langkah ke ~1.500). `run`
   menghentikan eksekusi di titik itu dan melaporkan `main_loop_idle`, bukan
   `ExecutionLimit`.
+- `java.lang.Thread`: `getDefaultUncaughtExceptionHandler` /
+  `getUncaughtExceptionHandler` sekarang mengembalikan objek
+  `Thread$UncaughtExceptionHandler` kosong (bukan null) agar kode aplikasi
+  tidak mendapat `NullReference` saat memakainya; `uncaughtException`
+  ditangani sebagai no-op.
 - Jendela offscreen: `Activity.getWindow()`/`setContentView` dan
   `android.graphics.Canvas`/`Bitmap` (`createBitmap`, `drawColor`, `drawRGB`,
   `drawRect`, `drawLine`, `drawText`, `drawBitmap`) merekam operasi gambar ke

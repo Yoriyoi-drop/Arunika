@@ -4776,19 +4776,28 @@ impl AndroidNativeMethods {
             // menerima panggilan tanpa memblokir proses host.
             ("sleep", "(J)V") => Some(Ok(Value::Int(0))),
             ("interrupted", "()Z") | ("isInterrupted", "()Z") => Some(Ok(Value::Int(0))),
-            // Runtime ini tidak punya penangan eksepsi global; handler yang
-            // dipasang dicatat sebagai no-op dan getter melaporkan null.
+            // Runtime ini tidak punya penangan eksepsi global nyata; handler
+            // yang dipasang dicatat sebagai no-op dan getter mengembalikan
+            // objek Thread$UncaughtExceptionHandler kosong (bukan null) agar
+            // kode aplikasi tidak mendapat NullReference saat memakainya.
             ("setDefaultUncaughtExceptionHandler", _) | ("setUncaughtExceptionHandler", _) => {
                 Some(Ok(Value::Int(0)))
             }
             ("getDefaultUncaughtExceptionHandler", _) | ("getUncaughtExceptionHandler", _) => {
-                Some(Ok(Value::Int(0)))
+                let handler = heap.alloc(Object::Instance {
+                    type_name: "Ljava/lang/Thread$UncaughtExceptionHandler;".to_string(),
+                    fields: std::collections::HashMap::new(),
+                });
+                Some(Ok(handler))
             }
             ("getStackTrace", "()[Ljava/lang/StackTraceElement;") => {
                 Some(Ok(heap.alloc(Object::Array {
                     element_type: "Ljava/lang/StackTraceElement;".to_string(),
                     elements: Vec::new(),
                 })))
+            }
+            ("uncaughtException", "(Ljava/lang/Thread;Ljava/lang/Throwable;)V") => {
+                Some(Ok(Value::Int(0)))
             }
             _ => None,
         }
@@ -6107,7 +6116,8 @@ mod tests {
             )
             .expect("getDefaultUncaughtExceptionHandler harus tersedia")
             .expect("getDefaultUncaughtExceptionHandler harus berhasil");
-        assert_eq!(handler, Value::Int(0));
+        // Harus mengembalikan objek Thread$UncaughtExceptionHandler, bukan null.
+        assert!(matches!(handler, Value::Ref(_)));
     }
 
     #[test]
